@@ -1,0 +1,14 @@
+Build.PL
+LICENSE
+MANIFEST
+META.yml
+Makefile.PL
+README
+dist.ini
+dist.ini~
+lib/Test/XML/Ordered.pm
+lib/Test/XML/Ordered.pm~
+t/release-pod-coverage.t
+t/release-pod-syntax.t
+t/xml_compare1.t
+t/xml_compare1.t~

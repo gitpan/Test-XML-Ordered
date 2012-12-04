@@ -1,0 +1,17 @@
+name    = Test-XML-Ordered
+author  = Shlomi Fish <shlomif@cpan.org>
+license = MIT
+copyright_holder = Shlomi Fish
+copyright_year   = 2012
+
+[@Basic]
+[AutoPrereqs]
+[ModuleBuild]
+[PodSyntaxTests]
+[PodCoverageTests]
+[PruneCruft]
+[VersionFromModule]
+[MetaResources]
+repository.url = 
+repository.web = http://bitbucket.org/shlomif/test-xml-ordered
+repository.type = hg
