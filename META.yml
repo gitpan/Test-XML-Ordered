@@ -24,4 +24,4 @@ requires:
   warnings: 0
 resources:
   repository: ssh://hg@bitbucket.org/shlomif/test-xml-ordered
-version: 0.0.1
+version: 0.0.2

@@ -8,7 +8,7 @@ use warnings;
 
 use Test::XML::Ordered qw(is_xml_ordered);
 
-use Test::More tests => 1;
+use Test::More tests => 2;
 
 my $xml_source = <<'EOF';
 <?xml version="1.0" encoding="UTF-8"?>
@@ -82,11 +82,13 @@ my $final_source = <<'EOF';
 </html>
 EOF
 
+my @common = (validation => 0, load_ext_dtd => 0, no_network => 1);
 # TEST
 Test::XML::Ordered::is_xml_ordered(
-    [ string => $final_source, ],
-    [ string => $xml_source, ],
-    "foo",
+    [ string => $final_source, @common, ],
+    [ string => $xml_source, @common, ],
+    {},
+    "XMLs are equivalent.",
 );
 
 # TEST
