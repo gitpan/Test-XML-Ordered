@@ -7,7 +7,8 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "Module::Build" => "0.3601"
+    "Module::Build" => "0.3601",
+    "XML::LibXML" => 0
   },
   "configure_requires" => {
     "ExtUtils::MakeMaker" => "6.30",
@@ -18,7 +19,7 @@ my %module_build_args = (
     "Shlomi Fish <shlomif\@cpan.org>"
   ],
   "dist_name" => "Test-XML-Ordered",
-  "dist_version" => "0.0.2",
+  "dist_version" => "0.0.3",
   "license" => "mit",
   "module_name" => "Test::XML::Ordered",
   "recommends" => {},
@@ -26,7 +27,8 @@ my %module_build_args = (
   "requires" => {
     "Exporter" => 0,
     "Test::More" => 0,
-    "XML::LibXML::Reader" => 0,
+    "XML::LibXML" => "2.0014",
+    "XML::LibXML::Reader" => "2.0014",
     "base" => 0,
     "strict" => 0,
     "vars" => 0,

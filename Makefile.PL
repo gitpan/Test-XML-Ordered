@@ -12,7 +12,8 @@ my %WriteMakefileArgs = (
   "ABSTRACT" => "compare two XML files for equivalency, in an ordered\nfashion.",
   "AUTHOR" => "Shlomi Fish <shlomif\@cpan.org>",
   "BUILD_REQUIRES" => {
-    "Module::Build" => "0.3601"
+    "Module::Build" => "0.3601",
+    "XML::LibXML" => 0
   },
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30",
@@ -25,13 +26,14 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Exporter" => 0,
     "Test::More" => 0,
-    "XML::LibXML::Reader" => 0,
+    "XML::LibXML" => "2.0014",
+    "XML::LibXML::Reader" => "2.0014",
     "base" => 0,
     "strict" => 0,
     "vars" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.0.2",
+  "VERSION" => "0.0.3",
   "test" => {
     "TESTS" => "t/*.t"
   }
