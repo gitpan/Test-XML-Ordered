@@ -19,7 +19,7 @@ my %module_build_args = (
     "Shlomi Fish <shlomif\@cpan.org>"
   ],
   "dist_name" => "Test-XML-Ordered",
-  "dist_version" => "0.0.4",
+  "dist_version" => "0.0.5",
   "license" => "mit",
   "module_name" => "Test::XML::Ordered",
   "recommends" => {},

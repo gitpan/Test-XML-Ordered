@@ -13,7 +13,7 @@ use vars '@EXPORT_OK';
 
 @EXPORT_OK = (qw(is_xml_ordered));
 
-our $VERSION = '0.0.4';
+our $VERSION = '0.0.5';
 
 sub new
 {
@@ -121,6 +121,10 @@ sub _compare_loop
         {
             verdict => 0,
             param => $args->{param},
+            (exists($args->{got})
+                ? (got => $args->{got}, expected => $args->{expected})
+                : ()
+            ),
         }
     };
 
@@ -153,22 +157,56 @@ sub _compare_loop
             {
                 $t =~ s{\A\s+}{}ms;
                 $t =~ s{\s+\z}{}ms;
-                $t =~ s{\s+}{ }ms;
+                $t =~ s{\s+}{ }gms;
             }
             if ($got_text ne $expected_text)
             {
-                return $calc_prob->({param => "text"});
+                return $calc_prob->(
+                    {
+                        param => "text",
+                        got => $got_text,
+                        expected => $expected_text,
+                    }
+                );
             }
         }
         elsif ($type == XML_READER_TYPE_ELEMENT())
         {
-            if ($self->_got->localName() ne $self->_expected->localName())
+            my $check = sub {
+                if ($self->_got->localName() ne $self->_expected->localName())
+                {
+                    return $calc_prob->({param => "element_name"});
+                }
+                if (_ns($self->_got) ne _ns($self->_expected))
+                {
+                    return $calc_prob->({param => "mismatch_ns"});
+                }
+                return;
+            };
+
+            if (my $ret = $check->())
             {
-                return $calc_prob->({param => "element_name"});
+                return $ret;
             }
-            if (_ns($self->_got) ne _ns($self->_expected))
+
+            my $is_got_empty = $self->_got->isEmptyElement;
+            my $is_expected_empty = $self->_expected->isEmptyElement;
+
+            if ($is_got_empty && (!$is_expected_empty))
             {
-                return $calc_prob->({param => "mismatch_ns"});
+                $self->_read_expected();
+                if (my $ret = $check->())
+                {
+                    return $ret;
+                }
+            }
+            elsif ($is_expected_empty && (!$is_got_empty))
+            {
+                $self->_read_got();
+                if (my $ret = $check->())
+                {
+                    return $ret;
+                }
             }
         }
     }
@@ -196,7 +234,7 @@ sub _get_diag_message
     elsif ($status_struct->{param} eq "text")
     {
         return
-            "Texts differ: Got at " . $self->_got->lineNumber(). " ; Expected at ". $self->_expected->lineNumber();
+            "Texts differ: Got <<$status_struct->{got}>> at " . $self->_got->lineNumber(). " ; Expected <<$status_struct->{expected}>> at ". $self->_expected->lineNumber();
     }
     elsif ($status_struct->{param} eq "element_name")
     {
