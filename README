@@ -1,7 +1,7 @@
 
 
 This archive contains the distribution Test-XML-Ordered,
-version 0.0.5:
+version 0.0.6:
 
   compare two XML files for equivalency, in an ordered
 fashion.
