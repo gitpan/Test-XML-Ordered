@@ -36,7 +36,7 @@ my %WriteMakefileArgs = (
     "Test::Builder::Tester" => 0,
     "XML::LibXML" => 0
   },
-  "VERSION" => "0.0.6",
+  "VERSION" => "0.0.7",
   "test" => {
     "TESTS" => "t/*.t"
   }
