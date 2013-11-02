@@ -22,9 +22,10 @@ requires:
   XML::LibXML: 2.0014
   XML::LibXML::Reader: 2.0014
   base: 0
+  perl: 5.010
   strict: 0
   vars: 0
   warnings: 0
 resources:
   repository: ssh://hg@bitbucket.org/shlomif/test-xml-ordered
-version: 0.0.7
+version: 0.0.8

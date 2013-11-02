@@ -18,7 +18,7 @@ my %module_build_args = (
     "Shlomi Fish <shlomif\@cpan.org>"
   ],
   "dist_name" => "Test-XML-Ordered",
-  "dist_version" => "0.0.7",
+  "dist_version" => "0.0.8",
   "license" => "mit",
   "module_name" => "Test::XML::Ordered",
   "recommends" => {},
@@ -29,6 +29,7 @@ my %module_build_args = (
     "XML::LibXML" => "2.0014",
     "XML::LibXML::Reader" => "2.0014",
     "base" => 0,
+    "perl" => "5.010",
     "strict" => 0,
     "vars" => 0,
     "warnings" => 0
